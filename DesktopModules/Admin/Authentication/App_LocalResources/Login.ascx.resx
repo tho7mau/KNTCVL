@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AssociateHelp.Text" xml:space="preserve">
     <value>You can associate your login information with an existing user account by entering your user name and password.</value>
@@ -169,7 +169,7 @@
     <value>You cannot login to the site from this IP address.</value>
   </data>
   <data name="LoginFailed.Text" xml:space="preserve">
-    <value>Đăng nhập thất bại. Mật khẩu có phân biệt chữ hoa chữ thường.</value>
+    <value>Login Failed. Please remember that passwords are case sensitive.</value>
   </data>
   <data name="PasswordExpired.Text" xml:space="preserve">
     <value>Your password expired on {0}.  Please update your password before continuing.</value>

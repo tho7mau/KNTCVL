@@ -136,7 +136,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <h4>Thông tin đối tượng</h4>
+                                                <h4>Thông tin tiếp dân</h4>
                                             </div>
                                             <div class="col-lg-6 text-right">
                                                 <h2><b>
@@ -162,7 +162,7 @@
                                                             <asp:ListItem Text="Nhóm đông người" Value="2"></asp:ListItem>
                                                             <asp:ListItem Text="Cơ quan tổ chức" Value="3"></asp:ListItem>
                                                         </asp:DropDownList>
-                                                        <asp:LinkButton ID="btnChonNguoiDaiDien" Visible="false" runat="server" CssClass="btn btn-sm  btn-flat text-primary float-left" data-toggle="modal" data-target="#modal-default"><i class="icofont-maximize h4"></i></asp:LinkButton>
+                                                        <asp:LinkButton ID="btnChonNguoiDaiDien" runat="server" CssClass="btn btn-sm  btn-flat text-primary float-left" data-toggle="modal" data-target="#modal-default"><i class="icofont-maximize h4"></i></asp:LinkButton>
                                                     </div>
                                                 </div>
                                             </div>
