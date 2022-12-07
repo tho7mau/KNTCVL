@@ -63,9 +63,12 @@ namespace KNTC
                 {
                     vDonThuId = int.Parse(Request.QueryString["id"]);
                 }
+                
                 if (!IsPostBack)
                 {
+                    
                     loadHuongXuLy(0);
+                    
                     GetCoQuan();
                     Session["NhieuNoiDung" + _currentUser.UserID] = null;
 
@@ -81,6 +84,7 @@ namespace KNTC
                     {
                         XoaSessionFile_HoSoNguoiDaiDienUyQuyen();
                     }
+                    
                     hdfieldLayThongTin.Value = "true";
                     LoadDanhSachDonVi();
                     LoadDanhSachCanBo();
@@ -95,7 +99,11 @@ namespace KNTC
                     LoadDanhSach(1, vPageSize);
                     LoadBSModal();
                     EnableSoNguoi(vDonThuId);
-                    //textTenThietBi.Focus();                
+                    //textTenThietBi.Focus();
+                    if (ddlistHuongXuLy.SelectedValue == "")
+                    {
+                        btnGiaiQuyetDon.Visible = false;
+                    }
                 }
 
             }
@@ -136,7 +144,7 @@ namespace KNTC
             btnGiaiQuyetDon.Visible = false;
             btnCapNhat.Visible = true;
             buttonThemmoi.Visible = false;
-
+            
             SetEnableForm(true);
             Loadbtn_ThemNguoiDaiDien();
         }
@@ -3656,9 +3664,10 @@ namespace KNTC
                     vDP_ID = 0;
                 }
 
-
                 string vKeySort = "";
                 string vTypeSort = "";
+
+                
                 string vContentSearch = textSearchContent.Text.Trim();
                 if (ViewState["keysort"] != null && ViewState["typesort"] != null)
                 {
@@ -3667,84 +3676,104 @@ namespace KNTC
 
                 }
 
+
+
                 CommonController objCommonController = new CommonController();
                 string vSearchOption = textSearchContent_HiddenField.Text;
 
 
-                DataSet ds = new DataSet();
-                // trường hợp có đơn 
-                bool vFlag = true;
-                if (vFlag == true)
-                {
-                    if (vSearchOption == "")
-                    {
-                        vSearchOption = "|DONTHU.DONTHU_STT,normal,,|CANHAN.CANHAN_HOTEN,normal,,|CANHAN.CANHAN_DIACHI_DAYDU,normal,,|DONTHU.DONTHU_NOIDUNG,normal,,";
-                    }
-                    if (vDP_ID != 0)
-                    {
-                        DIAPHUONG objDIAPHUONG = vDataContext.DIAPHUONGs.Where(x => x.DP_ID == vDP_ID).FirstOrDefault();
-                        if (objDIAPHUONG != null)
-                        {
-                            vSearchOption = vSearchOption + "|DIAPHUONG.INDEX_ID,equal,like '" + objDIAPHUONG.INDEX_ID + "%' ,";
-                        }
-                    }
-                    ds = objCommonController.GetPage(PortalId, ModuleId, "DonThu_GetPage_Popup", vSearchOption, textSearchContent.Text, vKeySort + " " + vTypeSort, v_start - 1, v_end);
-                    dgDanhSach.DataKeyField = "DONTHU_ID";
-                    // Tiếp dân
-                    dgDanhSach.Columns[3].Visible = false;
-                    dgDanhSach.Columns[7].Visible = false;
-                    dgDanhSach.Columns[9].Visible = false;
 
-                    dgDanhSach.Columns[11].Visible = false;
-                    dgDanhSach.Columns[12].Visible = false;
-                    dgDanhSach.Columns[15].Visible = false;
-                    // Đơn thư
-                    dgDanhSach.Columns[4].Visible = true;
-                    dgDanhSach.Columns[8].Visible = true;
-                    dgDanhSach.Columns[10].Visible = true;
-                    dgDanhSach.Columns[13].Visible = true;
-                    dgDanhSach.Columns[14].Visible = true;
-                    dgDanhSach.Columns[16].Visible = true;
-                    //dgDanhSach.Columns[9].Visible = true;
-                    //dgDanhSach.Columns[10].Visible = true;
-                    //dgDanhSach.Columns[11].Visible = true;
-                }
-                // trường hợp không có đơn có đơn 
-                else
+                if (vSearchOption == "")
                 {
-                    if (vSearchOption == "")
-                    {
-                        vSearchOption = "|TIEPDAN.TIEPDAN_STT,normal,,|CANHAN.CANHAN_HOTEN,normal,,|CANHAN.CANHAN_DIACHI_DAYDU,normal,,|TIEPDAN.TIEPDAN_NOIDUNG,normal,,";
-                    }
-                    if (vDP_ID != 0)
-                    {
-                        DIAPHUONG objDIAPHUONG = vDataContext.DIAPHUONGs.Where(x => x.DP_ID == vDP_ID).FirstOrDefault();
-                        if (objDIAPHUONG != null)
-                        {
-                            vSearchOption = vSearchOption + "|DIAPHUONG.INDEX_ID,equal,like '" + objDIAPHUONG.INDEX_ID + "%' ,";
-                        }
-                    }
-                    ds = objCommonController.GetPage(PortalId, ModuleId, "TiepDan_GetPage_Popup", vSearchOption, textSearchContent.Text, vKeySort + " " + vTypeSort, v_start - 1, v_end);
-                    dgDanhSach.DataKeyField = "TIEPDAN_ID";
-
-                    // Tiếp dân
-                    dgDanhSach.Columns[3].Visible = true;
-                    dgDanhSach.Columns[7].Visible = true;
-                    dgDanhSach.Columns[9].Visible = true;
-                    dgDanhSach.Columns[11].Visible = true;
-                    dgDanhSach.Columns[12].Visible = true;
-                    dgDanhSach.Columns[15].Visible = true;
-                    // Đơn thư
-                    dgDanhSach.Columns[4].Visible = false;
-                    dgDanhSach.Columns[8].Visible = false;
-                    dgDanhSach.Columns[10].Visible = false;
-                    dgDanhSach.Columns[13].Visible = false;
-                    dgDanhSach.Columns[14].Visible = false;
-                    dgDanhSach.Columns[16].Visible = false;
-                    //dgDanhSach.Columns[9].Visible = false;
-                    //dgDanhSach.Columns[10].Visible = false;
-                    //dgDanhSach.Columns[11].Visible = false;
+                    vSearchOption = "|DOITUONG.DOITUONG_ID,normal,,|CANHAN.CANHAN_HOTEN,normal,,|CANHAN.CANHAN_DIACHI_DAYDU,normal,,|DOITUONG.DOITUONG_DIACHI,normal,,";
                 }
+                if (vDP_ID != 0)
+                {
+                    DIAPHUONG objDIAPHUONG = vDataContext.DIAPHUONGs.Where(x => x.DP_ID == vDP_ID).FirstOrDefault();
+                    if (objDIAPHUONG != null)
+                    {
+                        vSearchOption = vSearchOption + "|DIAPHUONG.INDEX_ID,equal,like '" + objDIAPHUONG.INDEX_ID + "%' ,";
+                    }
+                }
+
+                DataSet ds = objCommonController.GetPage(PortalId, ModuleId, "DoiTuong_GetPage", vSearchOption, textSearchContent.Text, vKeySort + " " + vTypeSort, v_start - 1, v_end);
+                TiepDanController vTiepDanController = new TiepDanController();
+                List<TIEPDAN_DOITUONG> vTIEPDANs = vTiepDanController.getList(vContentSearch);
+
+                //DataSet ds = new DataSet();
+                //// trường hợp có đơn 
+                //bool vFlag = true;
+                //if (vFlag == true)
+                //{
+                //    if (vSearchOption == "")
+                //    {
+                //        vSearchOption = "|DONTHU.DONTHU_STT,normal,,|CANHAN.CANHAN_HOTEN,normal,,|CANHAN.CANHAN_DIACHI_DAYDU,normal,,|DONTHU.DONTHU_NOIDUNG,normal,,";
+                //    }
+                //    if (vDP_ID != 0)
+                //    {
+                //        DIAPHUONG objDIAPHUONG = vDataContext.DIAPHUONGs.Where(x => x.DP_ID == vDP_ID).FirstOrDefault();
+                //        if (objDIAPHUONG != null)
+                //        {
+                //            vSearchOption = vSearchOption + "|DIAPHUONG.INDEX_ID,equal,like '" + objDIAPHUONG.INDEX_ID + "%' ,";
+                //        }
+                //    }
+                //    ds = objCommonController.GetPage(PortalId, ModuleId, "DonThu_GetPage_Popup", vSearchOption, textSearchContent.Text, vKeySort + " " + vTypeSort, v_start - 1, v_end);
+                //    dgDanhSach.DataKeyField = "DONTHU_ID";
+                //    // Tiếp dân
+                //    dgDanhSach.Columns[3].Visible = false;
+                //    dgDanhSach.Columns[7].Visible = false;
+                //    dgDanhSach.Columns[9].Visible = false;
+
+                //    dgDanhSach.Columns[11].Visible = false;
+                //    dgDanhSach.Columns[12].Visible = false;
+                //    dgDanhSach.Columns[15].Visible = false;
+                //    // Đơn thư
+                //    dgDanhSach.Columns[4].Visible = false;
+                //    dgDanhSach.Columns[8].Visible = false;
+                //    dgDanhSach.Columns[10].Visible = false;
+                //    dgDanhSach.Columns[13].Visible = false;
+                //    dgDanhSach.Columns[14].Visible = false;
+                //    dgDanhSach.Columns[16].Visible = false;
+                //    //dgDanhSach.Columns[9].Visible = true;
+                //    //dgDanhSach.Columns[10].Visible = true;
+                //    //dgDanhSach.Columns[11].Visible = true;
+                //}
+                //// trường hợp không có đơn có đơn 
+                //else
+                //{
+                //    if (vSearchOption == "")
+                //    {
+                //        vSearchOption = "|TIEPDAN.TIEPDAN_STT,normal,,|CANHAN.CANHAN_HOTEN,normal,,|CANHAN.CANHAN_DIACHI_DAYDU,normal,,|TIEPDAN.TIEPDAN_NOIDUNG,normal,,";
+                //    }
+                //    if (vDP_ID != 0)
+                //    {
+                //        DIAPHUONG objDIAPHUONG = vDataContext.DIAPHUONGs.Where(x => x.DP_ID == vDP_ID).FirstOrDefault();
+                //        if (objDIAPHUONG != null)
+                //        {
+                //            vSearchOption = vSearchOption + "|DIAPHUONG.INDEX_ID,equal,like '" + objDIAPHUONG.INDEX_ID + "%' ,";
+                //        }
+                //    }
+                //    ds = objCommonController.GetPage(PortalId, ModuleId, "TiepDan_GetPage_Popup", vSearchOption, textSearchContent.Text, vKeySort + " " + vTypeSort, v_start - 1, v_end);
+                //    dgDanhSach.DataKeyField = "TIEPDAN_ID";
+
+                //    // Tiếp dân
+                //    dgDanhSach.Columns[3].Visible = true;
+                //    dgDanhSach.Columns[7].Visible = false;
+                //    dgDanhSach.Columns[9].Visible = false;
+                //    dgDanhSach.Columns[11].Visible = false;
+                //    dgDanhSach.Columns[12].Visible = false;
+                //    dgDanhSach.Columns[15].Visible = false;
+                //    // Đơn thư
+                //    dgDanhSach.Columns[4].Visible = false;
+                //    dgDanhSach.Columns[8].Visible = false;
+                //    dgDanhSach.Columns[10].Visible = false;
+                //    dgDanhSach.Columns[13].Visible = false;
+                //    dgDanhSach.Columns[14].Visible = false;
+                //    dgDanhSach.Columns[16].Visible = false;
+                //    //dgDanhSach.Columns[9].Visible = false;
+                //    //dgDanhSach.Columns[10].Visible = false;
+                //    //dgDanhSach.Columns[11].Visible = false;
+                //}
                 int TotalRow = 0;
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -4092,8 +4121,12 @@ namespace KNTC
                     }
                 }
 
-                var vDoiTuongInfo = vDataContext.DONTHUs.Where(x => x.DONTHU_ID == vID).Select(x => x.DOITUONG).FirstOrDefault();
-                hdfieldDoiTuongId.Value = vDoiTuongInfo.DOITUONG_ID.ToString();
+                //var vDoiTuongInfo = vDataContext.DONTHUs.Where(x => x.DONTHU_ID == vID).Select(x => x.DOITUONG).FirstOrDefault();
+                //hdfieldDoiTuongId.Value = vDoiTuongInfo.DOITUONG_ID.ToString();
+
+                var vDoiTuongInfo = vDataContext.DOITUONGs.Where(x => x.DOITUONG_ID == vID).FirstOrDefault();
+                hdfieldDoiTuongId.Value = vID.ToString();
+
                 if (vDoiTuongInfo != null)
                 {
                     if (btn.CommandArgument == "ChonDoiTuong")

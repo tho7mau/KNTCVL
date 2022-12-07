@@ -110,7 +110,7 @@
         <elementListCompartment Id="7424565a-ad6e-40d4-bc85-b47ac02cb0f4" absoluteBounds="6.015, 1.71, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.34375 : 5.625); (5.34375 : 3.91270182291667); (6 : 3.91270182291667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.34375 : 5.625); (5.34375 : 3.91270182291667); (6 : 3.91270182291667)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/KNTCDataContext/CHUCVU/CHUCVU_CANBO" />
       <nodes>
         <classShapeMoniker Id="68dfe8bd-cba3-42c9-916c-9149e27c4c65" />
@@ -211,14 +211,14 @@
         <elementListCompartment Id="a04ccafd-1723-4316-aa7a-ce31e08cf24b" absoluteBounds="3.1399999999999997, 2.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.125 : 2.41429768880208); (6 : 2.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.125 : 2.41429768880208); (6 : 2.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/KNTCDataContext/PhongBan/PhongBan_CANBO" />
       <nodes>
         <classShapeMoniker Id="5408e695-5b46-48be-aaca-f6085430c5b2" />
         <classShapeMoniker Id="5f842560-48b3-4c39-af9a-84db9c35a75b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.41429768880208); (3.125 : 2.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.41429768880208); (3.125 : 2.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/KNTCDataContext/DONVI/DONVI_PhongBan" />
       <nodes>
         <classShapeMoniker Id="0035499d-b20d-4921-b9d5-363bc82713b5" />
